@@ -2,7 +2,7 @@ import React from "react";
 import { View, Image, Text, TouchableOpacity } from "react-native";
 import Styles from "../assets/style/Styles";
 
-const Contact = (props) => {
+const Contact = (props: any) => {
   return (
     <TouchableOpacity
       onPress={() => {

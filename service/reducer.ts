@@ -15,6 +15,7 @@ import {
   REACT_APP_EDIT_CONTACT,
   REACT_APP_DELETE_CONTACT,
 } from "@env";
+import { PersonType, StateType } from "../CustomTypes";
 
 const initialState = {
   people: [],
@@ -26,7 +27,7 @@ const initialState = {
   isLoad: false,
 };
 
-const searchContact = (person, txtSearch) => {
+const searchContact = (person: PersonType, txtSearch: string) => {
   if (
     txtSearch === "" ||
     txtSearch === undefined ||
@@ -40,7 +41,7 @@ const searchContact = (person, txtSearch) => {
   return false;
 };
 
-const searchbyLocation = (person, location) => {
+const searchbyLocation = (person: PersonType, location: string) => {
   if (
     location === "" ||
     location === undefined ||
@@ -51,7 +52,7 @@ const searchbyLocation = (person, location) => {
   return false;
 };
 
-const reducer = (state = initialState, action) => {
+const reducer = (state: StateType = initialState, action: any) => {
   let people = [];
   let companies = [];
   let listPeople = [];
@@ -202,7 +203,7 @@ const reducer = (state = initialState, action) => {
         people: [...state.people, action.payload.params],
       };
     case REACT_APP_EDIT_CONTACT:
-      listPeople = state.listPeople.map((person) => {
+      listPeople = state.listPeople.map((person: any) => {
         if (person.key === action.payload.key) {
           return action.payload.params;
         }

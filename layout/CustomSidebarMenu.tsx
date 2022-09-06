@@ -8,7 +8,7 @@ import {
 } from "@react-navigation/drawer";
 import Profile from "./Profile";
 
-const CustomSidebarMenu = (props) => {
+const CustomSidebarMenu = (props: any) => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <Profile />

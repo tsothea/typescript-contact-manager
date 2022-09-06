@@ -8,13 +8,11 @@ import {
 } from "react-native";
 import Styles from "../assets/style/Styles";
 import { useSelector } from "react-redux";
-import Contact from "../components/Contact";
-// import SectionList from "../layout/SectionList";
-import { SwipeListView } from "react-native-swipe-list-view";
 import ListContacts from "../components/ListContacts";
+import { StateType } from "../CustomTypes";
 
-const HomeScreen = (navigation) => {
-  const state = useSelector((state) => state);
+const HomeScreen = (navigation: any) => {
+  const state: StateType = useSelector((state: StateType) => state);
   const people = state.listPeople;
   return (
     <View style={Styles.container}>

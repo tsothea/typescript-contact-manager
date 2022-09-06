@@ -18,12 +18,14 @@ import {
   forceDeleteContact,
 } from "./contactAction";
 import { REACT_APP_FIREBASE_URL } from "@env";
+import { CompanyType, PersonType } from "../CustomTypes";
+import { Dispatch } from "redux";
 
-export const getPeople = async (dispatch) => {
+export const getPeople = async (dispatch: Dispatch) => {
   return await axios
     .get(REACT_APP_FIREBASE_URL + "/people.json")
     .then((response) => {
-      let people = [];
+      let people: PersonType[] = [];
       Object.entries(response.data).forEach(([index, value]) => {
         people.push({ ...value, key: index });
       });
@@ -31,7 +33,7 @@ export const getPeople = async (dispatch) => {
     });
 };
 
-export const saveContact = async (key, dispatch) => {
+export const saveContact = async (key: string, dispatch: Dispatch) => {
   let updateData = { isContact: true };
   await axios
     .patch(REACT_APP_FIREBASE_URL + "/people/" + key + ".json", updateData)
@@ -40,7 +42,7 @@ export const saveContact = async (key, dispatch) => {
     });
 };
 
-export const deleteContact = async (key, dispatch) => {
+export const deleteContact = async (key: string, dispatch: Dispatch) => {
   let updateData = { isContact: false, isFavourite: false };
   await axios
     .patch(REACT_APP_FIREBASE_URL + "/people/" + key + ".json", updateData)
@@ -49,7 +51,7 @@ export const deleteContact = async (key, dispatch) => {
     });
 };
 
-export const saveFavourite = async (key, dispatch) => {
+export const saveFavourite = async (key: string, dispatch: Dispatch) => {
   let updateData = { isFavourite: true };
   await axios
     .patch(REACT_APP_FIREBASE_URL + "/people/" + key + ".json", updateData)
@@ -58,7 +60,7 @@ export const saveFavourite = async (key, dispatch) => {
     });
 };
 
-export const deleteFavourite = async (key, dispatch) => {
+export const deleteFavourite = async (key: string, dispatch: Dispatch) => {
   let updateData = { isFavourite: false };
   await axios
     .patch(REACT_APP_FIREBASE_URL + "/people/" + key + ".json", updateData)
@@ -67,11 +69,11 @@ export const deleteFavourite = async (key, dispatch) => {
     });
 };
 
-export const getCompanies = async (dispatch) => {
+export const getCompanies = async (dispatch: Dispatch) => {
   return await axios
     .get(REACT_APP_FIREBASE_URL + "/companies.json")
     .then((response) => {
-      let companies = [];
+      let companies: CompanyType[] = [];
       Object.entries(response.data).forEach(([index, value]) => {
         companies.push({ ...value, key: index });
       });
@@ -79,7 +81,7 @@ export const getCompanies = async (dispatch) => {
     });
 };
 
-export const addNewCompany = async (company, dispatch) => {
+export const addNewCompany = async (company: CompanyType, dispatch: Dispatch) => {
   return await axios
     .post(REACT_APP_FIREBASE_URL + "/companies.json", company)
     .then((response) => {
@@ -88,7 +90,7 @@ export const addNewCompany = async (company, dispatch) => {
     });
 };
 
-export const editCompany = async (company, dispatch) => {
+export const editCompany = async (company: CompanyType, dispatch: Dispatch) => {
   return await axios
     .patch(REACT_APP_FIREBASE_URL + "/companies/" + company["key"] + ".json", {
       name: company["name"],
@@ -98,7 +100,7 @@ export const editCompany = async (company, dispatch) => {
     });
 };
 
-export const removeCompany = async (key, dispatch) => {
+export const removeCompany = async (key: string, dispatch: Dispatch) => {
   return await axios
     .delete(REACT_APP_FIREBASE_URL + "/companies/" + key + ".json")
     .then(() => {
@@ -106,7 +108,7 @@ export const removeCompany = async (key, dispatch) => {
     });
 };
 
-export const saveNewContact = async (formData, dispatch) => {
+export const saveNewContact = async (formData: PersonType, dispatch: Dispatch) => {
   await axios
     .post(REACT_APP_FIREBASE_URL + "/people.json", formData)
     .then((response) => {
@@ -115,7 +117,7 @@ export const saveNewContact = async (formData, dispatch) => {
     });
 };
 
-export const updateNewContact = async (formData, dispatch) => {
+export const updateNewContact = async (formData: PersonType, dispatch: Dispatch) => {
   await axios
     .patch(
       REACT_APP_FIREBASE_URL + "/people/" + formData.key + ".json",
@@ -126,7 +128,7 @@ export const updateNewContact = async (formData, dispatch) => {
     });
 };
 
-export const forceRemoveContact = async (key, dispatch) => {
+export const forceRemoveContact = async (key: string, dispatch: Dispatch) => {
   return await axios
     .delete(REACT_APP_FIREBASE_URL + "/people/" + key + ".json")
     .then(() => {

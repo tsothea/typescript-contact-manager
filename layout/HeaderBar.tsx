@@ -2,7 +2,7 @@ import React from "react";
 import { View } from "react-native";
 import { Feather, AntDesign } from "@expo/vector-icons";
 
-const HeaderBar = (props) => {
+const HeaderBar = (props: any) => {
   return (
     <View
       style={{

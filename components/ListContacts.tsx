@@ -4,17 +4,19 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import Contact from "./Contact";
 import { useDispatch } from "react-redux";
 import { forceRemoveContact } from "../service";
+import { PersonType, SwapItemType } from "../CustomTypes";
+import { Dispatch } from "redux";
 
-const ListContacts = (props) => {
-  const dispatch = useDispatch();
-  let people = props.data;
+const ListContacts = (props: any) => {
+  const dispatch: Dispatch = useDispatch();
+  let people: PersonType[] = props.data;
   let navigation = props.navigation;
-  const closeRow = (rowMap, rowKey) => {
+  const closeRow = (rowMap: any, rowKey: string) => {
     if (rowMap[rowKey]) {
       rowMap[rowKey].closeRow();
     }
   };
-  const deleteContact = (key) => {
+  const deleteContact = (key: string) => {
     forceRemoveContact(key, dispatch);
   };
 
@@ -22,7 +24,7 @@ const ListContacts = (props) => {
     <>
       <SwipeListView
         data={people}
-        renderItem={(data, rowMap) => {
+        renderItem={(data: SwapItemType, rowMap: object) => {
           return (
             <View>
               <Contact item={data.item} navigation={navigation} />

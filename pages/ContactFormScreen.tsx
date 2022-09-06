@@ -39,7 +39,7 @@ const ContactFormScreen = (route) => {
     });
   };
 
-  const updateFormValue = (values) => {
+  const updateFormValue = (values: object) => {
     const newFormData = { ...formContact };
     Object.entries(values).forEach(([fieldName, value]) => {
       newFormData[fieldName] = value;
@@ -47,7 +47,7 @@ const ContactFormScreen = (route) => {
     setFormContact(newFormData);
   };
 
-  const updateSocialFormValue = (values) => {
+  const updateSocialFormValue = (values: object) => {
     const newFormData = { ...formContact };
     if (newFormData["social_networks"] === undefined) {
       newFormData["social_networks"] = {};

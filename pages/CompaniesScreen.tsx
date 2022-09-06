@@ -13,16 +13,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { Ionicons } from "@expo/vector-icons";
 import { addNewCompany, editCompany, removeCompany } from "../service";
 import { SwipeListView } from "react-native-swipe-list-view";
+import { CompanyType, StateType, SwapItemType } from "../CustomTypes";
 
-const CompaniesScreen = (navigation) => {
-  const [modalVisible, setModalVisible] = useState(false);
-  const [companyForm, setCompanyForm] = useState({});
-  const state = useSelector((state) => state);
-  const companies = state.companies;
+const CompaniesScreen = () => {
+  const [modalVisible, setModalVisible] = useState<boolean>(false);
+  const [companyForm, setCompanyForm] = useState<any>({});
+  const state: StateType = useSelector((state: StateType) => state);
+  const companies: CompanyType[] = state.companies;
   const dispatch = useDispatch();
 
-  const updateFormValue = (values) => {
-    const newFormData = { ...companyForm };
+  const updateFormValue = (values: any[]) => {
+    const newFormData: any = { ...companyForm };
     Object.entries(values).forEach(([fieldName, value]) => {
       newFormData[fieldName] = value;
     });
@@ -37,14 +38,14 @@ const CompaniesScreen = (navigation) => {
 
     setModalVisible(false);
   };
-  const updateCompany = (item) => {
+  const updateCompany = (item: object) => {
     setCompanyForm(item);
     setModalVisible(true);
   };
-  const deleteCompany = (key) => {
+  const deleteCompany = (key: string) => {
     removeCompany(key, dispatch);
   };
-  const closeRow = (rowMap, rowKey) => {
+  const closeRow = (rowMap: any, rowKey: string) => {
     if (rowMap[rowKey]) {
       rowMap[rowKey].closeRow();
     }
@@ -53,7 +54,7 @@ const CompaniesScreen = (navigation) => {
     <View>
       <SwipeListView
         data={companies}
-        renderItem={(data) => {
+        renderItem={(data: SwapItemType) => {
           return (
             <TouchableOpacity onPress={() => updateCompany(data.item)}>
               <View style={[Styles.containerItem, styles.textLeft]}>

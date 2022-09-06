@@ -4,10 +4,11 @@ import { Button, View } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
 import { useDispatch } from "react-redux";
 import { filterPeople } from "../service/actions";
+import { Dispatch } from "redux";
 
-const Search = (props) => {
-  const dispatch = useDispatch();
-  const dosearch = (text) => {
+const Search = (props: any) => {
+  const dispatch: Dispatch = useDispatch();
+  const dosearch = (text: string) => {
     dispatch(filterPeople(text));
   };
 
