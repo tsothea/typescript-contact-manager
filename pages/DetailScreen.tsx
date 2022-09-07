@@ -17,6 +17,7 @@ import {
 } from "../service";
 import { useDispatch } from "react-redux";
 
+// @ts-ignore
 const DetailScreen = ({ route, navigation }) => {
   const dispatch = useDispatch();
   let item = route.params.item;
@@ -24,7 +25,7 @@ const DetailScreen = ({ route, navigation }) => {
   const [isFavourite, setFavourite] = useState(item["isFavourite"]);
   const [isContact, setContact] = useState(item["isContact"]);
 
-  const editContact = (navigation) => {
+  const editContact = (navigation: any) => {
     navigation.navigate("ContactForm", {
       item: route.params.item,
     });
@@ -177,7 +178,7 @@ const DetailScreen = ({ route, navigation }) => {
   );
 };
 
-const styles = StyleSheet.create({
+const styles: any = StyleSheet.create({
   header: {
     backgroundColor: "#DCDCDC",
   },

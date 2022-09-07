@@ -4,6 +4,8 @@ const Styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 22,
+    flexDirection: "row",
+    backgroundColor: "#F5FCFF",
   },
   item: {
     padding: 10,
@@ -24,14 +26,6 @@ const Styles = StyleSheet.create({
     paddingTop: 10,
     paddingBottom: 10,
     borderBottomWidth: 1,
-    borderBottomColor: "#ccc",
-  },
-  container: {
-    flex: 1,
-    flexDirection: "row",
-    // justifyContent: "center",
-    // alignItems: "center",
-    backgroundColor: "#F5FCFF",
   },
   rightContainer: {
     flex: 1,

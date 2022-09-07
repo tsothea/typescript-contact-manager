@@ -17,14 +17,13 @@ import {
   editContact,
   forceDeleteContact,
 } from "./contactAction";
-import { REACT_APP_FIREBASE_URL } from "@env";
-import { CompanyType, PersonType } from "../CustomTypes";
+import {CompanyType, PersonType, ResponseType} from "../CustomTypes";
 import { Dispatch } from "redux";
 
 export const getPeople = async (dispatch: Dispatch) => {
   return await axios
-    .get(REACT_APP_FIREBASE_URL + "/people.json")
-    .then((response) => {
+    .get(process.env.REACT_APP_FIREBASE_URL + "/people.json")
+    .then((response: ResponseType) => {
       let people: PersonType[] = [];
       Object.entries(response.data).forEach(([index, value]) => {
         people.push({ ...value, key: index });
@@ -36,7 +35,7 @@ export const getPeople = async (dispatch: Dispatch) => {
 export const saveContact = async (key: string, dispatch: Dispatch) => {
   let updateData = { isContact: true };
   await axios
-    .patch(REACT_APP_FIREBASE_URL + "/people/" + key + ".json", updateData)
+    .patch(process.env.REACT_APP_FIREBASE_URL + "/people/" + key + ".json", updateData)
     .then(() => {
       dispatch(addContact(key));
     });
@@ -45,7 +44,7 @@ export const saveContact = async (key: string, dispatch: Dispatch) => {
 export const deleteContact = async (key: string, dispatch: Dispatch) => {
   let updateData = { isContact: false, isFavourite: false };
   await axios
-    .patch(REACT_APP_FIREBASE_URL + "/people/" + key + ".json", updateData)
+    .patch(process.env.REACT_APP_FIREBASE_URL + "/people/" + key + ".json", updateData)
     .then(() => {
       dispatch(removeContact(key));
     });
@@ -54,7 +53,7 @@ export const deleteContact = async (key: string, dispatch: Dispatch) => {
 export const saveFavourite = async (key: string, dispatch: Dispatch) => {
   let updateData = { isFavourite: true };
   await axios
-    .patch(REACT_APP_FIREBASE_URL + "/people/" + key + ".json", updateData)
+    .patch(process.env.REACT_APP_FIREBASE_URL + "/people/" + key + ".json", updateData)
     .then(() => {
       dispatch(addFavorite(key));
     });
@@ -63,7 +62,7 @@ export const saveFavourite = async (key: string, dispatch: Dispatch) => {
 export const deleteFavourite = async (key: string, dispatch: Dispatch) => {
   let updateData = { isFavourite: false };
   await axios
-    .patch(REACT_APP_FIREBASE_URL + "/people/" + key + ".json", updateData)
+    .patch(process.env.REACT_APP_FIREBASE_URL + "/people/" + key + ".json", updateData)
     .then(() => {
       dispatch(removeFavorite(key));
     });
@@ -71,8 +70,8 @@ export const deleteFavourite = async (key: string, dispatch: Dispatch) => {
 
 export const getCompanies = async (dispatch: Dispatch) => {
   return await axios
-    .get(REACT_APP_FIREBASE_URL + "/companies.json")
-    .then((response) => {
+    .get(process.env.REACT_APP_FIREBASE_URL + "/companies.json")
+    .then((response: ResponseType) => {
       let companies: CompanyType[] = [];
       Object.entries(response.data).forEach(([index, value]) => {
         companies.push({ ...value, key: index });
@@ -83,7 +82,7 @@ export const getCompanies = async (dispatch: Dispatch) => {
 
 export const addNewCompany = async (company: CompanyType, dispatch: Dispatch) => {
   return await axios
-    .post(REACT_APP_FIREBASE_URL + "/companies.json", company)
+    .post(process.env.REACT_APP_FIREBASE_URL + "/companies.json", company)
     .then((response) => {
       company["key"] = response.data["name"];
       dispatch(addCompany(company));
@@ -92,7 +91,7 @@ export const addNewCompany = async (company: CompanyType, dispatch: Dispatch) =>
 
 export const editCompany = async (company: CompanyType, dispatch: Dispatch) => {
   return await axios
-    .patch(REACT_APP_FIREBASE_URL + "/companies/" + company["key"] + ".json", {
+    .patch(process.env.REACT_APP_FIREBASE_URL + "/companies/" + company["key"] + ".json", {
       name: company["name"],
     })
     .then(() => {
@@ -102,7 +101,7 @@ export const editCompany = async (company: CompanyType, dispatch: Dispatch) => {
 
 export const removeCompany = async (key: string, dispatch: Dispatch) => {
   return await axios
-    .delete(REACT_APP_FIREBASE_URL + "/companies/" + key + ".json")
+    .delete(process.env.REACT_APP_FIREBASE_URL + "/companies/" + key + ".json")
     .then(() => {
       dispatch(deleteCompany(key));
     });
@@ -110,7 +109,7 @@ export const removeCompany = async (key: string, dispatch: Dispatch) => {
 
 export const saveNewContact = async (formData: PersonType, dispatch: Dispatch) => {
   await axios
-    .post(REACT_APP_FIREBASE_URL + "/people.json", formData)
+    .post(process.env.REACT_APP_FIREBASE_URL + "/people.json", formData)
     .then((response) => {
       formData["key"] = response.data["name"];
       dispatch(addNewContact(formData));
@@ -120,7 +119,7 @@ export const saveNewContact = async (formData: PersonType, dispatch: Dispatch) =
 export const updateNewContact = async (formData: PersonType, dispatch: Dispatch) => {
   await axios
     .patch(
-      REACT_APP_FIREBASE_URL + "/people/" + formData.key + ".json",
+        process.env.REACT_APP_FIREBASE_URL + "/people/" + formData.key + ".json",
       formData
     )
     .then(() => {
@@ -130,7 +129,7 @@ export const updateNewContact = async (formData: PersonType, dispatch: Dispatch)
 
 export const forceRemoveContact = async (key: string, dispatch: Dispatch) => {
   return await axios
-    .delete(REACT_APP_FIREBASE_URL + "/people/" + key + ".json")
+    .delete(process.env.REACT_APP_FIREBASE_URL + "/people/" + key + ".json")
     .then(() => {
       dispatch(forceDeleteContact(key));
     });

@@ -30,7 +30,6 @@ const Search = (props: any) => {
       />
       <Button
         title="Cancel"
-        style={{ width: 80 }}
         onPress={() => props.navigation.goBack()}
       />
     </View>

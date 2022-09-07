@@ -36,6 +36,10 @@ export interface StateType {
 
 export interface SwapItemType {
     index: number,
-    item: object,
+    item: any,
     separators: object
+}
+
+export interface ResponseType {
+    data: PersonType[]
 }

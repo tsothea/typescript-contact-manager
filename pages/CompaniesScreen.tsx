@@ -22,7 +22,7 @@ const CompaniesScreen = () => {
   const companies: CompanyType[] = state.companies;
   const dispatch = useDispatch();
 
-  const updateFormValue = (values: any[]) => {
+  const updateFormValue = (values: object) => {
     const newFormData: any = { ...companyForm };
     Object.entries(values).forEach(([fieldName, value]) => {
       newFormData[fieldName] = value;
@@ -126,7 +126,6 @@ const CompaniesScreen = () => {
           <View style={styles.modalView}>
             <Text style={{ textAlign: "left" }}>Company Name : </Text>
             <TextInput
-              name="name"
               value={companyForm.name ? companyForm.name : ""}
               onChangeText={(name) => updateFormValue({ name })}
               style={{
@@ -146,7 +145,7 @@ const CompaniesScreen = () => {
   );
 };
 
-const styles = StyleSheet.create({
+const styles: any = StyleSheet.create({
   centeredView: {
     flex: 1,
     justifyContent: "center",

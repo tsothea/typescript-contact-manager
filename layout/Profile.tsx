@@ -3,12 +3,9 @@ import { View, Image, Text } from "react-native";
 import Styles from "../assets/style/Styles";
 
 function Profile() {
-  return (
-    <View
-      style={{
-        textAlign: "center",
-      }}
-    >
+
+    return (
+    <View>
       <Image
         source={require("../assets/images/profile.jpg")}
         style={Styles.sideMenuProfileIcon}

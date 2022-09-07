@@ -5,7 +5,7 @@ import Styles from "../assets/style/Styles";
 import ListContacts from "../components/ListContacts";
 import { PersonType, StateType } from "../CustomTypes";
 
-const SearchScreen = (navigation) => {
+const SearchScreen = (navigation: any) => {
   const state: StateType = useSelector((state: StateType) => state);
   const people: PersonType[] = state.people;
 

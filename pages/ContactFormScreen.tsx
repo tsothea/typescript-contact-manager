@@ -11,7 +11,7 @@ import {
 import { useDispatch } from "react-redux";
 import { saveNewContact, updateNewContact } from "../service";
 
-const ContactFormScreen = (route) => {
+const ContactFormScreen = (route: any) => {
   const dispatch = useDispatch();
   let item = route.route.params ? route.route.params.item : {};
   const [formContact, setFormContact] = useState(item);
@@ -62,7 +62,6 @@ const ContactFormScreen = (route) => {
     <ScrollView style={{ flex: 1 }}>
       <View style={styles.container}>
         <TextInput
-          name="key"
           value={formContact.key ? formContact.key : ""}
           style={{ display: "none" }}
         />
@@ -70,7 +69,6 @@ const ContactFormScreen = (route) => {
           <TextInput
             style={styles.inputs}
             placeholder="Name"
-            fieldName="name"
             value={formContact.name ? formContact.name : ""}
             underlineColorAndroid="transparent"
             onChangeText={(name) => updateFormValue({ name })}
@@ -81,7 +79,6 @@ const ContactFormScreen = (route) => {
           <TextInput
             style={styles.inputs}
             placeholder="City"
-            fieldName="city"
             value={formContact.city ? formContact.city : ""}
             underlineColorAndroid="transparent"
             onChangeText={(city) => updateFormValue({ city })}
@@ -92,7 +89,6 @@ const ContactFormScreen = (route) => {
           <TextInput
             style={styles.inputs}
             placeholder="Avatar"
-            fieldName="avatar"
             value={formContact.avatar ? formContact.avatar : ""}
             underlineColorAndroid="transparent"
             onChangeText={(avatar) => updateFormValue({ avatar })}
@@ -103,7 +99,6 @@ const ContactFormScreen = (route) => {
           <TextInput
             style={styles.inputs}
             placeholder="Company"
-            fieldName="company"
             value={formContact.company ? formContact.company : ""}
             underlineColorAndroid="transparent"
             onChangeText={(company) => updateFormValue({ company })}
@@ -114,7 +109,6 @@ const ContactFormScreen = (route) => {
           <TextInput
             style={styles.inputs}
             placeholder="Position"
-            fieldName="position"
             value={formContact.position ? formContact.position : ""}
             underlineColorAndroid="transparent"
             onChangeText={(position) => updateFormValue({ position })}
@@ -125,7 +119,6 @@ const ContactFormScreen = (route) => {
           <TextInput
             style={styles.inputs}
             placeholder="Facebook"
-            fieldName="facebook"
             value={
               formContact.social_networks
                 ? formContact.social_networks.facebook
@@ -139,7 +132,6 @@ const ContactFormScreen = (route) => {
           <TextInput
             style={styles.inputs}
             placeholder="Instagram"
-            fieldName="instagram"
             value={
               formContact.social_networks
                 ? formContact.social_networks.instagram
@@ -153,7 +145,6 @@ const ContactFormScreen = (route) => {
           <TextInput
             style={styles.inputs}
             placeholder="Linkedin"
-            fieldName="linkedin"
             value={
               formContact.social_networks
                 ? formContact.social_networks.linkedin
@@ -167,7 +158,6 @@ const ContactFormScreen = (route) => {
           <TextInput
             style={styles.inputs}
             placeholder="Skypse"
-            fieldName="skypse"
             value={
               formContact.social_networks
                 ? formContact.social_networks.skypse
@@ -181,7 +171,6 @@ const ContactFormScreen = (route) => {
           <TextInput
             style={styles.inputs}
             placeholder="Twitter"
-            fieldName="twitter"
             value={
               formContact.social_networks
                 ? formContact.social_networks.twitter
